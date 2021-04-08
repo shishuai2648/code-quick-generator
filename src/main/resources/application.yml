@@ -1,7 +1,25 @@
 server:
   port: 8888
-mybatis:
-  mapperLocations: classpath:mapper/**/*.xml
+mybatis-plus:
+  mapper-locations: classpath*:sql/mapper/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.person.quick.entity
+  global-config:
+    #是否自动刷新 Mapper对应的 XML文件，无需重启
+    refresh: true
+    db-config:
+      id-type: AUTO
+      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+      field-strategy: NOT_NULL
+      #逻辑删除配置（如果你的默认值和mp默认的一样,该配置可无）
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
 spring:
   datasource:
@@ -14,3 +32,7 @@ spring:
           password: 123
           driver-class-name: com.mysql.cj.jdbc.Driver
 
+logging:
+  level:
+    root: info
+    com.baomidou.dynamic: debug

@@ -13,14 +13,6 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class DbConfig {
 
-
-    @Bean
-    @Primary
-    public BaseSqlQueryMapper mysqlMapper(MySqlQueryMapper mySqlQueryMapper) {
-        return mySqlQueryMapper;
-    }
-
-
     @Bean
     @ConditionalOnMissingBean
     public DsProcessor dsProcessor() {

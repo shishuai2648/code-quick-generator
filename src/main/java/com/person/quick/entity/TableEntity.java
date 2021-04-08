@@ -3,6 +3,7 @@ package com.person.quick.entity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author shishuai04
@@ -29,4 +30,14 @@ public class TableEntity {
      * 创建时间
      */
     private Date createTime;
+
+    /**
+     * 表的主键
+     */
+    private ColumnEntity pk;
+
+    /**
+     * 表的列名(不包含主键)
+     */
+    private List<ColumnEntity> columns;
 }

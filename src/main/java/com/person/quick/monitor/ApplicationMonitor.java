@@ -31,15 +31,6 @@ public class ApplicationMonitor  implements CommandLineRunner {
         for (DataSourceEntity dataSourceEntity : dataSourceEntities) {
             dataSourceConfig.addDataSource(dataSourceEntity);
         }
-
-//        TableEntity databaseBase = generatorService.getDatabase("base", "data_source");
-
-
-        TableEntity databaseHRC = generatorService.getDatabase("hrc", "data_source");
-
-//        System.out.println(databaseBase);
-        System.out.println(databaseHRC);
-
     }
 
 

@@ -1,5 +1,7 @@
 package com.person.quick.mapper;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
+import com.person.quick.entity.ColumnEntity;
 import com.person.quick.entity.TableEntity;
 
 import java.util.List;
@@ -25,8 +27,11 @@ public interface BaseSqlQueryMapper {
      * @param tableName
      * @return
      */
-    TableEntity queryTable(String tableName);
+    @DS("#p0")
+    TableEntity queryTable(String dataSourceKey, String tableName);
 
+    @DS("#p0")
+    String queryDataBase(String dataSourceKey);
 
     /**
      * 查询所有列数据
@@ -34,5 +39,6 @@ public interface BaseSqlQueryMapper {
      * @param tableName
      * @return
      */
-    List<Map<String, String>> queryColumns(String tableName);
+    @DS("#p0")
+    List<ColumnEntity> queryColumns(String dataSourceKey, String tableName);
 }
