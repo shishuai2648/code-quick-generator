@@ -20,7 +20,6 @@ public class DataSourceEntity {
     private String dataSourcePassword;
     private String dataSourceDriver;
     private String dataSourceType;
-    private String dataSourceFilePath;
 
     public DataSourceProperty toDataSourceProperty(){
         DataSourceProperty dataSourceProperty = new DataSourceProperty();

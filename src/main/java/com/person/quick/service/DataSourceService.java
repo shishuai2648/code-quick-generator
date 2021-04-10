@@ -1,11 +1,12 @@
-package com.person.quick.service.gengerator;
+package com.person.quick.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.person.quick.entity.DataSourceEntity;
 
 /**
  * @author shishuai04
  */
-public interface DataSourceService {
+public interface DataSourceService extends IService<DataSourceEntity> {
 
     /**
      *

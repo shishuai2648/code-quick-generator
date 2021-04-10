@@ -1,9 +1,10 @@
-package com.person.quick.service.gengerator.impl;
+package com.person.quick.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.person.quick.entity.DataSourceEntity;
 import com.person.quick.mapper.DataSourceMapper;
-import com.person.quick.service.gengerator.DataSourceService;
+import com.person.quick.service.DataSourceService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * @author shishuai04
  */
 @Service
-public class DataSourceServiceImpl implements DataSourceService {
+public class DataSourceServiceImpl extends ServiceImpl<DataSourceMapper, DataSourceEntity> implements DataSourceService {
 
     @Resource
     private DataSourceMapper dataSourceMapper;

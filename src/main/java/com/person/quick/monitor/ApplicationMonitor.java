@@ -3,9 +3,8 @@ package com.person.quick.monitor;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.person.quick.config.DataSourceConfig;
 import com.person.quick.entity.DataSourceEntity;
-import com.person.quick.entity.TableEntity;
 import com.person.quick.mapper.DataSourceMapper;
-import com.person.quick.service.gengerator.GeneratorService;
+import com.person.quick.service.DataHandlerService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +21,7 @@ public class ApplicationMonitor  implements CommandLineRunner {
     private DataSourceConfig dataSourceConfig;
 
     @Resource
-    private GeneratorService generatorService;
+    private DataHandlerService dataHandlerService;
 
     @Override
     public void run(String... args) throws Exception {

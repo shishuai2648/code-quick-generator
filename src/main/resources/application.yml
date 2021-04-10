@@ -27,9 +27,9 @@ spring:
       primary: base
       datasource:
         base:
-          url: jdbc:mysql://localhost:3306/base?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5&serverTimezone=Asia/Shanghai
-          username: root
-          password: 123
+          url: jdbc:mysql://192.168.50.93:3306/base?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5&serverTimezone=Asia/Shanghai
+          username: ss
+          password: ss
           driver-class-name: com.mysql.cj.jdbc.Driver
 
 logging:
