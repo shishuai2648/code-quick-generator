@@ -65,7 +65,7 @@ public interface DataHandlerService {
      * @param dataSourceKey
      * @return
      */
-    StringWriter renderPage(String dataSourceKey, String templateName, Map<String, String> params);
+    StringWriter renderPage(String dataSourceKey, String templateName, Map<String, Object> params);
 
 
     /**

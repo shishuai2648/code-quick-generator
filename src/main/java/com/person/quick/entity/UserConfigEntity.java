@@ -1,8 +1,10 @@
 package com.person.quick.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
+@TableName("user_config")
 public class UserConfigEntity {
 
     private String userConfigId;

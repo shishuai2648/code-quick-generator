@@ -5,6 +5,7 @@ import com.person.quick.config.DataSourceConfig;
 import com.person.quick.entity.DataSourceEntity;
 import com.person.quick.mapper.DataSourceMapper;
 import com.person.quick.service.DataHandlerService;
+import com.person.quick.service.GeneratorService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ public class ApplicationMonitor  implements CommandLineRunner {
     private DataSourceConfig dataSourceConfig;
 
     @Resource
-    private DataHandlerService dataHandlerService;
+    private GeneratorService generatorService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -30,6 +31,10 @@ public class ApplicationMonitor  implements CommandLineRunner {
         for (DataSourceEntity dataSourceEntity : dataSourceEntities) {
             dataSourceConfig.addDataSource(dataSourceEntity);
         }
+
+
+        generatorService.generatorCode("hrc","base_process_time","test","");
+
     }
 
 

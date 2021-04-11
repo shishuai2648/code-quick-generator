@@ -1,9 +1,11 @@
 package com.person.quick.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
+@TableName("template_info")
 public class TemplateEntity {
 
     @TableId
@@ -11,7 +13,7 @@ public class TemplateEntity {
     private String dataSourceKey;
     private String templateName;
     private String templatePosition;
-    private Integer templateSuffix;
+    private String templateSuffix;
     private Integer existReplace;
     private String tableNameRex;
     private String modulePackage;

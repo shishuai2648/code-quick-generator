@@ -15,14 +15,17 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.springframework.stereotype.Service;
+import sun.security.util.Resources;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.StringWriter;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @author shishuai04
@@ -83,12 +86,19 @@ public class DataHandlerServiceImpl implements DataHandlerService {
     }
 
     @Override
-    public StringWriter renderPage(String dataSourceKey, String templateName, Map<String, String> params) {
+    public StringWriter renderPage(String dataSourceKey, String templateName, Map<String, Object> params) {
 
         VelocityContext context = new VelocityContext(params);
 
         StringWriter sw = new StringWriter();
-        Template template = Velocity.getTemplate(templateName, "UTF-8");
+
+        URL resource = this.getClass().getClassLoader().getResource("template/Entity.java.vm");
+        //设置velocity资源加载器
+        Properties prop = new Properties();
+        prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        Velocity.init(prop);
+
+        Template template = Velocity.getTemplate("template/Entity.java.vm", "UTF-8");
         template.merge(context, sw);
         return sw;
     }

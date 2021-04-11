@@ -71,7 +71,7 @@ public class TableModuleUtil {
             if ("PRI".equalsIgnoreCase(column.getColumnKey())) {
                 columnModel.setIsPK(Boolean.TRUE);
             }
-
+            columnModels.add(columnModel);
         }
         return columnModels;
     }
@@ -80,7 +80,7 @@ public class TableModuleUtil {
      * 列名转换成Java属性名
      */
     public static String columnToJava(String columnName) {
-        return WordUtils.capitalizeFully(columnName, new char[]{'_'}).replace("_", "");
+        return StringUtils.uncapitalize(WordUtils.capitalizeFully(columnName, new char[]{'_'}).replace("_", ""));
     }
 
 
@@ -104,18 +104,19 @@ public class TableModuleUtil {
     }
 
     public static String getClassName(String tableName) {
-        return StringUtils.capitalize(getClassname(tableName));
+        return WordUtils.capitalizeFully(tableName, new char[]{'_'}).replace("_", "");
+
     }
 
     public static String getClassname(String tableName) {
-        return WordUtils.capitalize(tableName, new char[]{' ', '_'});
+        return StringUtils.uncapitalize(getClassName(tableName));
     }
 
 
     public static String getModuleName(String tableNameRex, String tableName) {
         String handlerTableName = tableName.toLowerCase();
         for (String suffix : Constants.SUFFIX) {
-            handlerTableName = handlerTableName.replace(tableName, suffix);
+            handlerTableName = handlerTableName.replace(suffix, "");
         }
 
         String[] split = tableNameRex.split("_");

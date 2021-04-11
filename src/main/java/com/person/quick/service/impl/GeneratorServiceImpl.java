@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.xml.ws.Action;
 import java.io.File;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -48,8 +49,11 @@ public class GeneratorServiceImpl implements GeneratorService {
             moduleName = dataHandlerService.tableNameToModule(tableName, template, userConfig, moduleName);
             TableModel tableModel = dataHandlerService.formatTable(tableEntity, template, userConfig, moduleName, columnAttrMap);
             params.putAll(MapUtils.objectToMap(tableModel));
-        }
 
+            StringWriter stringWriter = dataHandlerService.renderPage(dataSourceKey, template.getTemplatePosition(), params);
+
+            dataHandlerService.writePosition(dataSourceKey, template, userConfig, tableModel, stringWriter);
+        }
 
 
         return null;
