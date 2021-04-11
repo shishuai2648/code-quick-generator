@@ -13,6 +13,7 @@ public class TemplateEntity {
     private String dataSourceKey;
     private String templateName;
     private String templatePosition;
+    private String templateFileName;
     private String templateSuffix;
     private Integer existReplace;
     private String tableNameRex;

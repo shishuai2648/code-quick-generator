@@ -35,7 +35,7 @@ public class TableModuleUtil {
         tableModel.setEmail(userConfigEntity.getEmail());
 
         tableModel.setClassPackage(getClassPackage(tableEntity, templateEntity, moduleName));
-        tableModel.setClassPackageName(tableModel.getClassPackage() + "." + tableModel.getClassName() + templateEntity.getTemplateSuffix());
+        tableModel.setClassPackageName(tableModel.getClassPackage() + "." + tableModel.getClassName() + templateEntity.getTemplateFileName());
 
         List<ColumnModel> columns = getColumns(tableEntity, templateEntity, userConfigEntity, columnAttrMap);
 
@@ -92,7 +92,7 @@ public class TableModuleUtil {
     public static String getTableName(TableEntity tableEntity, TemplateEntity templateEntity, String moduleName) {
         String tableName = tableEntity.getTableName();
         if (YesNo.NO.getValue().equals(templateEntity.getModuleNameShow())) {
-            tableName = tableName.replaceFirst(tableName, moduleName).replace("__", "_");
+            tableName = tableName.replace(moduleName, "").replace("__", "_");
         }
 
         Matcher matcher = pattern.matcher(tableName);

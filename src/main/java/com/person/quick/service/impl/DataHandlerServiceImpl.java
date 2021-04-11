@@ -97,15 +97,20 @@ public class DataHandlerServiceImpl implements DataHandlerService {
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init(prop);
 
-        Template template = Velocity.getTemplate("template/Entity.java.vm", "UTF-8");
+        Template template = Velocity.getTemplate(templateName, "UTF-8");
         template.merge(context, sw);
         return sw;
     }
 
     @Override
     public void writePosition(String dataSourceKey, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, TableModel tableModel, StringWriter writer) throws FileNotFoundException {
-        String filePath = templateEntity.getTemplatePosition() + File.separator + templateEntity.getProjectCodeRelativePosition() + File.separator + tableModel.getClassPackageName().replace(".", File.separator);
-        filePath = filePath.replaceAll("\\.", File.separator) + ".java";
+
+        String projectPosition = userConfigEntity.getProjectPosition();
+        String projectCodeRelativePosition = templateEntity.getProjectCodeRelativePosition();
+        String classPackagePath = tableModel.getClassPackageName().replace("\\.", File.separator);
+
+
+        String filePath = projectPosition + File.separator + projectCodeRelativePosition + File.separator + classPackagePath + templateEntity.getTemplateSuffix();
 
         String s = writer.toString();
         System.out.println(s);
