@@ -92,7 +92,6 @@ public class DataHandlerServiceImpl implements DataHandlerService {
 
         StringWriter sw = new StringWriter();
 
-        URL resource = this.getClass().getClassLoader().getResource("template/Entity.java.vm");
         //设置velocity资源加载器
         Properties prop = new Properties();
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
