@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    dynamic:
+      datasource:
+        famg:
+          url: jdbc:mysql://ihu-cdm-liuzhao.bcc-bdbl.baidu.com:8306/famg_dev?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5
+          bak-url: jdbc:mysql://ihu-cdm-liuzhao.bcc-bdbl.baidu.com:8306/famg_dev?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5
+          username: work
+          password: work@cdm
+        famg-test:
+          url: jdbc:mysql://ihu-cdm-liuzhao.bcc-bdbl.baidu.com:8306/famg_qa_1?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5
+          bak-url: jdbc:mysql://ihu-cdm-liuzhao.bcc-bdbl.baidu.com:8306/famg_qa_1?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5
+          username: work
+          password: work@cdm

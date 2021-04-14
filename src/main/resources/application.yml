@@ -39,6 +39,8 @@ logging:
 
 #debug: true
 spring:
+  profiles:
+    include: custom
   datasource:
     dynamic:
       primary: base
