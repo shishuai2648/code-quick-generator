@@ -1,10 +1,10 @@
-package com.person.quick.service;
+package com.person.quick.adapter;
 
+import com.person.quick.entity.DataSourceEntity;
 import com.person.quick.entity.TableEntity;
 import com.person.quick.entity.TemplateEntity;
 import com.person.quick.entity.UserConfigEntity;
 import com.person.quick.model.TableModel;
-import org.apache.velocity.Template;
 
 import java.io.FileNotFoundException;
 import java.io.StringWriter;
@@ -14,29 +14,54 @@ import java.util.Map;
 /**
  * @author shishuai04
  */
-public interface DataHandlerService {
+public interface GeneratorAdapter {
 
     /**
      * 获取数据库字段
      *
-     * @param tableName
      * @param dataSourceKey
      * @return
      */
-    TableEntity getDatabase(String dataSourceKey, String tableName);
+    DataSourceEntity getDatabase(String dataSourceKey);
+
+    /**
+     * 获取表信息
+     *
+     * @param dataSourceKey
+     * @param tableName
+     * @return
+     */
+    TableEntity getTableInfo(String dataSourceKey, DataSourceEntity dataSourceEntity, String tableName);
 
     /**
      * 数据库字段格式化
      *
      * @param tableEntity
+     * @param templateEntity
+     * @param userConfigEntity
+     * @param moduleName
+     * @param columnAttrMap
      * @return
+     * @throws Exception
      */
     TableModel formatTable(TableEntity tableEntity, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, String moduleName, Map<String, String> columnAttrMap) throws Exception;
 
+    /**
+     * 获取用户配置
+     *
+     * @param userKey
+     * @return
+     */
     UserConfigEntity getUserConfig(String userKey);
 
     /**
      * 表名处理
+     *
+     * @param tableName
+     * @param templateEntity
+     * @param userConfigEntity
+     * @param moduleName
+     * @return
      */
     String tableNameToModule(String tableName, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, String moduleName);
 
@@ -67,12 +92,15 @@ public interface DataHandlerService {
      */
     StringWriter renderPage(String dataSourceKey, String templateName, Map<String, Object> params);
 
-
     /**
      * 位置分发
      *
-     * @param writer
      * @param dataSourceKey
+     * @param templateEntity
+     * @param userConfigEntity
+     * @param tableModel
+     * @param writer
+     * @throws FileNotFoundException
      */
     void writePosition(String dataSourceKey, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, TableModel tableModel, StringWriter writer) throws FileNotFoundException;
 

@@ -21,18 +21,32 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
+#spring:
+#  datasource:
+#    dynamic:
+#      primary: base
+#      datasource:
+#        base:
+#          url: jdbc:mysql://120.48.31.80:3306/base?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5&serverTimezone=Asia/Shanghai
+#          username: ss
+#          password: 123
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+logging:
+  level:
+    root: info
+
+#debug: true
 spring:
   datasource:
     dynamic:
       primary: base
       datasource:
         base:
-          url: jdbc:mysql://192.168.50.93:3306/base?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5&serverTimezone=Asia/Shanghai
-          username: ss
-          password: ss
-          driver-class-name: com.mysql.cj.jdbc.Driver
-
-logging:
-  level:
-    root: info
-    com.baomidou.dynamic: debug
+          url: jdbc:h2:mem:base;MODE=MYSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE;
+          driver-class-name: org.h2.Driver
+          username: root
+          password: 123
+    schema: classpath:h2/base-schema.sql
+    data: classpath:h2/base-data.sql

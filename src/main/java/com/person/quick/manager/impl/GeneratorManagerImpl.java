@@ -1,19 +1,18 @@
-package com.person.quick.service.impl;
+package com.person.quick.manager.impl;
 
+import com.person.quick.adapter.GeneratorAdapter;
 import com.person.quick.entity.ColumnAttrRelEntity;
+import com.person.quick.entity.DataSourceEntity;
 import com.person.quick.entity.TableEntity;
 import com.person.quick.entity.TemplateEntity;
 import com.person.quick.entity.UserConfigEntity;
+import com.person.quick.manager.GeneratorManager;
 import com.person.quick.model.TableModel;
 import com.person.quick.service.ColumnAttrRelService;
-import com.person.quick.service.DataHandlerService;
-import com.person.quick.service.GeneratorService;
-import com.person.quick.service.TemplateService;
 import com.person.quick.utils.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.Action;
 import java.io.File;
 import java.io.StringWriter;
 import java.util.List;
@@ -21,10 +20,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class GeneratorServiceImpl implements GeneratorService {
+public class GeneratorManagerImpl implements GeneratorManager {
 
     @Autowired
-    private DataHandlerService dataHandlerService;
+    private GeneratorAdapter generatorAdapter;
 
     @Autowired
     private ColumnAttrRelService columnAttrRelService;
@@ -33,26 +32,29 @@ public class GeneratorServiceImpl implements GeneratorService {
     @Override
     public List<File> generatorCode(String dataSourceKey, String tableName, String userKey, String moduleName) throws Exception {
 
-        TableEntity tableEntity = dataHandlerService.getDatabase(dataSourceKey, tableName);
 
-        List<TemplateEntity> templates = dataHandlerService.templates(dataSourceKey);
+        DataSourceEntity database = generatorAdapter.getDatabase(dataSourceKey);
 
-        UserConfigEntity userConfig = dataHandlerService.getUserConfig(userKey);
+        TableEntity tableEntity = generatorAdapter.getTableInfo(dataSourceKey, database, tableName);
 
-        Map<String, Object> params = dataHandlerService.loadProperties(dataSourceKey);
+        List<TemplateEntity> templates = generatorAdapter.templates(dataSourceKey);
+
+        UserConfigEntity userConfig = generatorAdapter.getUserConfig(userKey);
+
+        Map<String, Object> params = generatorAdapter.loadProperties(dataSourceKey);
 
         List<ColumnAttrRelEntity> all = columnAttrRelService.getAll();
         Map<String, String> columnAttrMap = all.stream().collect(Collectors.toMap(ColumnAttrRelEntity::getColumnType, ColumnAttrRelEntity::getColumnType));
 
         for (TemplateEntity template : templates) {
 
-            moduleName = dataHandlerService.tableNameToModule(tableName, template, userConfig, moduleName);
-            TableModel tableModel = dataHandlerService.formatTable(tableEntity, template, userConfig, moduleName, columnAttrMap);
+            moduleName = generatorAdapter.tableNameToModule(tableName, template, userConfig, moduleName);
+            TableModel tableModel = generatorAdapter.formatTable(tableEntity, template, userConfig, moduleName, columnAttrMap);
             params.putAll(MapUtils.objectToMap(tableModel));
 
-            StringWriter stringWriter = dataHandlerService.renderPage(dataSourceKey, template.getTemplatePosition(), params);
+            StringWriter stringWriter = generatorAdapter.renderPage(dataSourceKey, template.getTemplatePosition(), params);
 
-            dataHandlerService.writePosition(dataSourceKey, template, userConfig, tableModel, stringWriter);
+            generatorAdapter.writePosition(dataSourceKey, template, userConfig, tableModel, stringWriter);
         }
 
 
