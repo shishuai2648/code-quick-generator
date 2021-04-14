@@ -46,7 +46,7 @@ CREATE TABLE `user_config`
 (
     `user_config_id`   bigint(20) NOT NULL AUTO_INCREMENT,
     `user_key`         varchar(32) NOT NULL,
-    `template_id`      varchar(32) NOT NULL,
+    `data_source_key`  varchar(32) NOT NULL,
     `author`           varchar(32) NOT NULL,
     `email`            varchar(32) NOT NULL,
     `project_position` varchar(32) NOT NULL,

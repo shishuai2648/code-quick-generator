@@ -9,7 +9,7 @@ public class UserConfigEntity {
 
     private String userConfigId;
     private String userKey;
-    private String templateId;
+    private String dataSourceKey;
     private String author;
     private String email;
     private String projectPosition;

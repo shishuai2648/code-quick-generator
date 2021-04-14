@@ -20,9 +20,9 @@ public class UserConfigServiceImpl extends ServiceImpl<UserConfigMapper, UserCon
     private UserConfigMapper userConfigMapper;
 
     @Override
-    public UserConfigEntity getUserConfigByKey(String userKey) {
+    public UserConfigEntity getUserConfigByKey(String dataSourceKey, String userKey) {
 
-        List<UserConfigEntity> userConfigList = userConfigMapper.selectList(new QueryWrapper<UserConfigEntity>().eq("user_key", userKey));
+        List<UserConfigEntity> userConfigList = userConfigMapper.selectList(new QueryWrapper<UserConfigEntity>().eq("user_key", userKey).eq("data_source_key", dataSourceKey));
 
         if (!CollectionUtils.isEmpty(userConfigList)) {
             return userConfigList.get(0);

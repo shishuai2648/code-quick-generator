@@ -39,7 +39,7 @@ public class GeneratorManagerImpl implements GeneratorManager {
 
         List<TemplateEntity> templates = generatorAdapter.templates(dataSourceKey);
 
-        UserConfigEntity userConfig = generatorAdapter.getUserConfig(userKey);
+        UserConfigEntity userConfig = generatorAdapter.getUserConfig(dataSourceKey, userKey);
 
         Map<String, Object> params = generatorAdapter.loadProperties(dataSourceKey);
 

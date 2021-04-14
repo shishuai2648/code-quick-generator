@@ -61,8 +61,8 @@ public class MySqlGeneratorAdapterImpl extends BaseGeneratorAdapterImpl {
     }
 
     @Override
-    public UserConfigEntity getUserConfig(String userKey) {
-        return userConfigService.getUserConfigByKey(userKey);
+    public UserConfigEntity getUserConfig(String dataSourceKey, String userKey) {
+        return userConfigService.getUserConfigByKey(dataSourceKey,userKey);
     }
 
 

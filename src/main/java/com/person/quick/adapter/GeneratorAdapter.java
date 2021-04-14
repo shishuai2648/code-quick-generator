@@ -52,7 +52,7 @@ public interface GeneratorAdapter {
      * @param userKey
      * @return
      */
-    UserConfigEntity getUserConfig(String userKey);
+    UserConfigEntity getUserConfig(String dataSourceKey, String userKey);
 
     /**
      * 表名处理
