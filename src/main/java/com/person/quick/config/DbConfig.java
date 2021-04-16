@@ -9,6 +9,7 @@ import com.person.quick.service.DataSourceService;
 import com.person.quick.service.TemplateService;
 import com.person.quick.service.UserConfigService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -26,8 +27,14 @@ public class DbConfig {
     }
 
     @Bean
+    @ConfigurationProperties(prefix = "custom")
+    public CustomConfig customConfig(){
+        return new CustomConfig();
+    }
+
+    @Bean
     @Primary
-    public GeneratorAdapter generatorAdapter(DataSourceService dataSourceService, TemplateService templateService, UserConfigService userConfigService) {
+    public GeneratorAdapter generatorAdapter(CustomConfig customConfig,DataSourceService dataSourceService, TemplateService templateService, UserConfigService userConfigService) {
         return new MySqlGeneratorAdapterImpl(dataSourceService, templateService, userConfigService);
     }
 

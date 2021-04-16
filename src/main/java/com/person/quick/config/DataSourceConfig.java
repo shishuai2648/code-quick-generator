@@ -38,7 +38,6 @@ public class DataSourceConfig {
 
     public Set<String> list() {
         DynamicRoutingDataSource dynamicRoutingDataSource = (DynamicRoutingDataSource) dataSource;
-
         return dynamicRoutingDataSource.getCurrentDataSources().keySet();
     }
 

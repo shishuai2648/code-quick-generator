@@ -12,3 +12,41 @@ spring:
           bak-url: jdbc:mysql://ihu-cdm-liuzhao.bcc-bdbl.baidu.com:8306/famg_qa_1?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5
           username: work
           password: work@cdm
+
+
+
+custom:
+  method: DB
+  datasourceKey: hrc
+  datasourceType: mysql
+  tableNames:
+    - base
+  author: shishuai04
+  email: shishuai04@baidu.com
+  projectPosition: /
+  templateList: ${common.config.defaultTemplateList}
+
+
+
+
+common:
+  config:
+    defaultTemplateList:
+      - templateName: Entity.java.vm
+        templatePosition: template/Entity.java.vm
+        templateFileName: Entity
+        templateSuffix: .java
+        existReplace: 1
+        tableNameRex: ${moduleName}
+        modulePackage: com.shishuai.${moduleName}.entity
+        projectCodeRelativePosition: src\main\java
+        moduleNameShow: 1
+      - templateName: Dao.java.vm
+        templatePosition: template/Dao.java.vm
+        templateFileName: Mapper
+        templateSuffix: .java
+        existReplace: 1
+        tableNameRex: ${moduleName}
+        modulePackage: com.shishuai.${moduleName}.Dao
+        projectCodeRelativePosition: src\main\java
+        moduleNameShow: 1

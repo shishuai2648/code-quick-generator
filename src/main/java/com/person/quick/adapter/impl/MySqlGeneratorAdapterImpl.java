@@ -13,7 +13,6 @@ import com.person.quick.service.DataSourceService;
 import com.person.quick.service.TemplateService;
 import com.person.quick.service.UserConfigService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,13 +20,10 @@ import java.util.List;
  */
 public class MySqlGeneratorAdapterImpl extends BaseGeneratorAdapterImpl {
 
-    @Resource
     private DataSourceService dataSourceService;
 
-    @Resource
     private TemplateService templateService;
 
-    @Resource
     private UserConfigService userConfigService;
 
 
