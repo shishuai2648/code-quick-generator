@@ -7,6 +7,7 @@ import com.person.quick.entity.UserConfigEntity;
 import com.person.quick.model.TableModel;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
@@ -102,6 +103,6 @@ public interface GeneratorAdapter {
      * @param writer
      * @throws FileNotFoundException
      */
-    void writePosition(String dataSourceKey, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, TableModel tableModel, StringWriter writer) throws FileNotFoundException;
+    void writePosition(String dataSourceKey, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, TableModel tableModel, StringWriter writer) throws IOException;
 
 }

@@ -1,4 +1,4 @@
-package ${Entity.classPackageName};
+package ${Entity.classPackage};
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -18,7 +18,7 @@ import java.util.Date;
  * @date ${datetime}
  */
 @TableName("${Entity.tableName}")
-public class ${Entity.classname}Entity implements Serializable {
+public class ${Entity.className} implements Serializable {
 
 
 #foreach ($column in $Entity.columns)

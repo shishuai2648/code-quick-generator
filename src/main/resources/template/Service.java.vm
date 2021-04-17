@@ -13,7 +13,7 @@ import java.util.Map;
  * @email ${email}
  * @date ${datetime}
  */
-public interface ${Service.className}Service extends IService<${Entity.className}Entity> {
+public interface ${Service.className} extends IService<${Entity.className}> {
 
 	/**
 	 * 查询列表信息

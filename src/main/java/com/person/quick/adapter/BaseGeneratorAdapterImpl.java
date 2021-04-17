@@ -11,9 +11,8 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.StringWriter;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,17 +65,32 @@ public abstract class BaseGeneratorAdapterImpl implements GeneratorAdapter {
     }
 
     @Override
-    public void writePosition(String dataSourceKey, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, TableModel tableModel, StringWriter writer) throws FileNotFoundException {
+    public void writePosition(String dataSourceKey, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, TableModel tableModel, StringWriter writer) throws IOException {
 
         String projectPosition = userConfigEntity.getProjectPosition();
         String projectCodeRelativePosition = templateEntity.getProjectCodeRelativePosition();
-        String classPackagePath = tableModel.getClassPackageName().replace(".", File.separator);
+        String classPackagePath = tableModel.getClassPackage().replace(".", File.separator);
 
-        String filePath = projectPosition + File.separator + projectCodeRelativePosition + File.separator + classPackagePath + templateEntity.getTemplateSuffix();
 
-        String s = writer.toString();
-        System.out.println(s);
+        String filePath = projectPosition + File.separator + projectCodeRelativePosition + File.separator + classPackagePath;
+
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
+        filePath = filePath + File.separator +  tableModel.getClassName() + templateEntity.getTemplateSuffix();
+
         System.out.println(filePath);
+
+        FileOutputStream fos = new FileOutputStream(filePath);
+
+        fos.write(writer.toString().getBytes(StandardCharsets.UTF_8));
+
+        writer.close();
+        fos.flush();
+        fos.close();
     }
 
 }

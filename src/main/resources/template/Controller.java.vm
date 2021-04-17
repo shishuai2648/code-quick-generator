@@ -31,9 +31,9 @@ import ${mainPath}.validator.group.AddGroup;
  */
 @RestController
 @RequestMapping("${Controller.classname}")
-public class ${Controller.className}Controller {
+public class ${Controller.className} {
     @Autowired
-    private ${Service.className}Service ${Service.classname}Service;
+    private ${Service.className} ${Service.classname};
 
     /**
      * 	列表
@@ -42,7 +42,7 @@ public class ${Controller.className}Controller {
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = ${Service.classname}Service.queryPage(params);
+        PageUtils page = ${Service.classname}.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -55,7 +55,7 @@ public class ${Controller.className}Controller {
      */
     @RequestMapping("/info/{${Entity.pk.attrname}}")
     public R info(@PathVariable("${Entity.pk.attrname}") ${Entity.pk.attrType} ${Entity.pk.attrname}){
-        ${Entity.className}Entity ${Entity.classname} = ${Entity.classname}Service.getById(${Entity.pk.attrname});
+        ${Entity.className} ${Entity.classname} = ${Service.classname}.getById(${Entity.pk.attrname});
 
         return R.ok().put("${Entity.classname}", ${Entity.classname});
     }
@@ -66,9 +66,9 @@ public class ${Controller.className}Controller {
      * @return
      */
     @RequestMapping("/save")
-    public R save(@RequestBody ${Entity.className}Entity ${Entity.classname}){
+    public R save(@RequestBody ${Entity.className} ${Entity.classname}){
     	ValidatorUtils.validateEntity(${Entity.classname}, AddGroup.class);
-        ${Service.classname}Service.save(${Entity.classname});
+        ${Service.classname}.save(${Entity.classname});
 
         return R.ok();
     }
@@ -79,9 +79,9 @@ public class ${Controller.className}Controller {
      * @return
      */
     @RequestMapping("/update")
-    public R update(@RequestBody ${Entity.className}Entity ${Entity.classname}){
+    public R update(@RequestBody ${Entity.className} ${Entity.classname}){
         ValidatorUtils.validateEntity(${Entity.classname}, AddGroup.class);
-        ${Service.classname}Service.updateById(${Entity.classname});//全部更新
+        ${Service.classname}.updateById(${Entity.classname});//全部更新
         
         return R.ok();
     }
@@ -93,7 +93,7 @@ public class ${Controller.className}Controller {
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody ${Entity.pk.attrType}[] ${Entity.pk.attrname}s){
-        ${Service.classname}Service.removeByIds(Arrays.asList(${Entity.pk.attrname}s));
+        ${Service.classname}.removeByIds(Arrays.asList(${Entity.pk.attrname}s));
 
         return R.ok();
     }

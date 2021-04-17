@@ -29,12 +29,12 @@ public class TableModuleUtil {
         TableModel tableModel = new TableModel();
         tableModel.setTableName(tableEntity.getTableName());
         tableModel.setTableComment(tableEntity.getTableComment());
-        tableModel.setClassName(getClassName(tableName));
-        tableModel.setClassname(getClassname(tableName));
+        tableModel.setClassName(getClassName(tableName) + templateEntity.getTemplateFileName());
+        tableModel.setClassname(getClassname(tableName) + templateEntity.getTemplateFileName());
         tableModel.setModuleName(moduleName);
 
         tableModel.setClassPackage(getClassPackage(tableEntity, templateEntity, moduleName));
-        tableModel.setClassPackageName(tableModel.getClassPackage() + "." + tableModel.getClassName() + templateEntity.getTemplateFileName());
+        tableModel.setClassPackageName(tableModel.getClassPackage() + "." + tableModel.getClassName());
 
         List<ColumnModel> columns = getColumns(tableEntity, tableModel, templateEntity, userConfigEntity, columnAttrMap);
 

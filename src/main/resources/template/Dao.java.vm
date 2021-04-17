@@ -1,4 +1,4 @@
-package ${Mapper.classPackageName};
+package ${Mapper.classPackage};
 
 import ${Entity.classPackageName};
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -13,11 +13,11 @@ import java.util.Map;
  * @email ${email}
  * @date ${datetime}
  */
-public interface ${Mapper.className}Mapper extends BaseMapper<${Entity.className}Entity> {
+public interface ${Mapper.className} extends BaseMapper<${Entity.className}> {
 	/**
 	 * 查询列表信息
 	 * @param params
 	 * @return
 	 */
-	List<${Entity.className}Entity> queryPage(IPage<${Entity.className}Entity> page, Map<String, Object> params);
+	List<${Entity.className}> queryPage(IPage<${Entity.className}> page, Map<String, Object> params);
 }
