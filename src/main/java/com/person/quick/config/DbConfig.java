@@ -29,15 +29,27 @@ public class DbConfig {
     }
 
     @Bean
+    @ConfigurationProperties(prefix = "custom")
+    public CustomConfig customConfig() {
+        return new CustomConfig();
+    }
+
+    @Bean
     @ConfigurationProperties(prefix = "common")
-    public CommonConfig customConfig() {
+    public CommonConfig commonConfig() {
         return new CommonConfig();
     }
 
     @Bean
     @Primary
-    public GeneratorAdapter generatorAdapter(CommonConfig commonConfig, DataSourceService dataSourceService, TemplateService templateService, UserConfigService userConfigService) {
+    public GeneratorAdapter generatorAdapter(CustomConfig customConfig, CommonConfig commonConfig, DataSourceService dataSourceService, TemplateService templateService, UserConfigService userConfigService) {
         if (GeneratorType.YML_CONFIG.equals(commonConfig.getMethod())) {
+            commonConfig.setDataSourceKey(customConfig.getDataSourceKey());
+            commonConfig.setModuleName(customConfig.getModuleName());
+            commonConfig.setProjectPosition(customConfig.getProjectPosition());
+            commonConfig.setTableNames(customConfig.getTableNames());
+
+
             return new YmlGeneratorAdapterImpl(commonConfig);
         }
         return new MySqlGeneratorAdapterImpl(dataSourceService, templateService, userConfigService);

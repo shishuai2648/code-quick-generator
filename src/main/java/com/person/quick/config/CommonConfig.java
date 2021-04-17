@@ -12,6 +12,8 @@ import java.util.List;
 @Data
 public class CommonConfig {
 
+    private String moduleName;
+
     private GeneratorType method;
 
     private String dataSourceKey;

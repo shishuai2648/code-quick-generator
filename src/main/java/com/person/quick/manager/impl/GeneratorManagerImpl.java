@@ -44,7 +44,7 @@ public class GeneratorManagerImpl implements GeneratorManager {
         Map<String, Object> params = generatorAdapter.loadProperties(dataSourceKey);
 
         List<ColumnAttrRelEntity> all = columnAttrRelService.getAll();
-        Map<String, String> columnAttrMap = all.stream().collect(Collectors.toMap(ColumnAttrRelEntity::getColumnType, ColumnAttrRelEntity::getColumnType));
+        Map<String, String> columnAttrMap = all.stream().collect(Collectors.toMap(ColumnAttrRelEntity::getColumnType, ColumnAttrRelEntity::getAttrType));
 
         for (TemplateEntity template : templates) {
 

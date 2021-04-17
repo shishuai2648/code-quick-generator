@@ -1,10 +1,22 @@
 
+#spring:
+#  datasource:
+#    dynamic:
+#      primary: base
+#      datasource:
+#        base:
+#          url: jdbc:mysql://120.48.31.80:3306/hrc?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5&serverTimezone=Asia/Shanghai
+#          username: ss
+#          password: 123
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+
 custom:
-  datasourceKey: hrc
+  dataSourceKey: hrc
   modulueName: process
   tableNames:
-    - base
-  projectPosition: /
+    - base_process_time
+    - base_transport_containers
+  projectPosition: E:\baidu\baidu\aiib-medical
 
 common:
   method: YML_CONFIG
@@ -16,17 +28,53 @@ common:
       templatePosition: template/Entity.java.vm
       templateFileName: Entity
       templateSuffix: .java
-      existReplace: 1
+      existReplace: 0
       tableNameRex: ${moduleName}
-      modulePackage: com.shishuai.${moduleName}.entity
-      projectCodeRelativePosition: src\main\java
+      modulePackage: com.baidu.aiig.medical.famg.data.famg.model
+      projectCodeRelativePosition: medical-famg-dao\src\main\java
       moduleNameShow: 1
     - templateName: Dao.java.vm
       templatePosition: template/Dao.java.vm
       templateFileName: Mapper
       templateSuffix: .java
-      existReplace: 1
+      existReplace: 0
       tableNameRex: ${moduleName}
-      modulePackage: com.shishuai.${moduleName}.Dao
-      projectCodeRelativePosition: src\main\java
+      modulePackage: com.baidu.aiig.medical.famg.data.famg.mapper
+      projectCodeRelativePosition: medical-famg-dao\src\main\java
+      moduleNameShow: 1
+    - templateName: Dao.xml.vm
+      templatePosition: template/Dao.xml.vm
+      templateFileName: Mapper
+      templateSuffix: .xml
+      existReplace: 0
+      tableNameRex: ${moduleName}
+      modulePackage: famg
+      projectCodeRelativePosition: medical-famg-dao\src\main\resources\sqlmap
+      moduleNameShow: 1
+    - templateName: Controller.java.vm
+      templatePosition: template/Controller.java.vm
+      templateFileName: Controller
+      templateSuffix: .java
+      existReplace: 0
+      tableNameRex: ${moduleName}
+      modulePackage: com.baidu.aiig.medical.famg.web.controller.${moduleName}
+      projectCodeRelativePosition: famg\src\main\java
+      moduleNameShow: 1
+    - templateName: Service.java.vm
+      templatePosition: template/Service.java.vm
+      templateFileName: Service
+      templateSuffix: .java
+      existReplace: 0
+      tableNameRex: ${moduleName}
+      modulePackage: com.baidu.aiig.medical.famg.data.famg.service.${moduleName}
+      projectCodeRelativePosition: medical-famg-dao\src\main\java
+      moduleNameShow: 1
+    - templateName: ServiceImpl.java.vm
+      templatePosition: template/ServiceImpl.java.vm
+      templateFileName: ServiceImpl
+      templateSuffix: .java
+      existReplace: 0
+      tableNameRex: ${moduleName}
+      modulePackage: com.baidu.aiig.medical.famg.data.famg.service.impl.${moduleName}
+      projectCodeRelativePosition:  medical-famg-dao\src\main\java
       moduleNameShow: 1

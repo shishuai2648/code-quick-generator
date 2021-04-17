@@ -21,16 +21,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
-#spring:
-#  datasource:
-#    dynamic:
-#      primary: base
-#      datasource:
-#        base:
-#          url: jdbc:mysql://120.48.31.80:3306/base?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&connectTimeout=2000&autoReconnect=true&maxReconnects=5&serverTimezone=Asia/Shanghai
-#          username: ss
-#          password: 123
-#          driver-class-name: com.mysql.cj.jdbc.Driver
+
 
 
 logging:

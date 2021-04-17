@@ -33,6 +33,7 @@ public class TableModuleUtil {
         tableModel.setClassname(getClassname(tableName));
         tableModel.setAuthor(userConfigEntity.getAuthor());
         tableModel.setEmail(userConfigEntity.getEmail());
+        tableModel.setModuleName(moduleName);
 
         tableModel.setClassPackage(getClassPackage(tableEntity, templateEntity, moduleName));
         tableModel.setClassPackageName(tableModel.getClassPackage() + "." + tableModel.getClassName() + templateEntity.getTemplateFileName());

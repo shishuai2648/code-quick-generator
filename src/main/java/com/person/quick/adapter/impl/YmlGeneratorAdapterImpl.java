@@ -22,12 +22,15 @@ public class YmlGeneratorAdapterImpl extends BaseGeneratorAdapterImpl {
 
     @Override
     public DataSourceEntity getDatabase(String dataSourceKey) {
-        return null;
-    }
+        DataSourceEntity dataSourceEntity = new DataSourceEntity();
+
+        dataSourceEntity.setDataSourceKey(dataSourceKey);
+        dataSourceEntity.setDataSourceType(commonConfig.getDataSourceType());
+        return dataSourceEntity; }
 
     @Override
     public TableEntity getTableInfo(String dataSourceKey, DataSourceEntity dataSourceEntity, String tableName) {
-        BaseSqlQueryMapper sqlQueryMapper = BaseSqlQueryFactory.getSqlQueryMapper(DbType.getByType(commonConfig.getDataSourceKey()));
+        BaseSqlQueryMapper sqlQueryMapper = BaseSqlQueryFactory.getSqlQueryMapper(DbType.getByType(commonConfig.getDataSourceType()));
         TableEntity tableEntity = sqlQueryMapper.queryTable(dataSourceKey, tableName);
         List<ColumnEntity> columns = sqlQueryMapper.queryColumns(dataSourceKey, tableName);
         tableEntity.setColumns(columns);

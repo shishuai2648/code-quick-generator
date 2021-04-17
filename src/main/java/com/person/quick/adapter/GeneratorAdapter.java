@@ -85,12 +85,12 @@ public interface GeneratorAdapter {
     /**
      * 渲染模板
      *
-     * @param templateName
+     * @param templatePosition
      * @param params
      * @param dataSourceKey
      * @return
      */
-    StringWriter renderPage(String dataSourceKey, String templateName, Map<String, Object> params);
+    StringWriter renderPage(String dataSourceKey, String templatePosition, Map<String, Object> params);
 
     /**
      * 位置分发

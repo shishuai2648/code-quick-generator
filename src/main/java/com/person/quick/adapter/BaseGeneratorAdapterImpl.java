@@ -4,6 +4,7 @@ import com.person.quick.entity.TableEntity;
 import com.person.quick.entity.TemplateEntity;
 import com.person.quick.entity.UserConfigEntity;
 import com.person.quick.model.TableModel;
+import com.person.quick.utils.DateUtils;
 import com.person.quick.utils.TableModuleUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.velocity.Template;
@@ -13,6 +14,7 @@ import org.apache.velocity.app.Velocity;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.StringWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -34,7 +36,9 @@ public abstract class BaseGeneratorAdapterImpl implements GeneratorAdapter {
 
     @Override
     public Map<String, Object> loadProperties(String dataSourceKey) {
-        return new HashMap<>();
+        Map<String, Object> param = new HashMap<>();
+        param.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
+        return param;
     }
 
 
@@ -45,7 +49,7 @@ public abstract class BaseGeneratorAdapterImpl implements GeneratorAdapter {
 
 
     @Override
-    public StringWriter renderPage(String dataSourceKey, String templateName, Map<String, Object> params) {
+    public StringWriter renderPage(String dataSourceKey, String templatePosition, Map<String, Object> params) {
 
         VelocityContext context = new VelocityContext(params);
 
@@ -56,7 +60,7 @@ public abstract class BaseGeneratorAdapterImpl implements GeneratorAdapter {
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init(prop);
 
-        Template template = Velocity.getTemplate(templateName, "UTF-8");
+        Template template = Velocity.getTemplate(templatePosition, "UTF-8");
         template.merge(context, sw);
         return sw;
     }
@@ -66,12 +70,12 @@ public abstract class BaseGeneratorAdapterImpl implements GeneratorAdapter {
 
         String projectPosition = userConfigEntity.getProjectPosition();
         String projectCodeRelativePosition = templateEntity.getProjectCodeRelativePosition();
-        String classPackagePath = tableModel.getClassPackageName().replace("\\.", File.separator);
+        String classPackagePath = tableModel.getClassPackageName().replace(".", File.separator);
 
         String filePath = projectPosition + File.separator + projectCodeRelativePosition + File.separator + classPackagePath + templateEntity.getTemplateSuffix();
 
-        String s = writer.toString();
-        System.out.println(s);
+//        String s = writer.toString();
+//        System.out.println(s);
         System.out.println(filePath);
     }
 
