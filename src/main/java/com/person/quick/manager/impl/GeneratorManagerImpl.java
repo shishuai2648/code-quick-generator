@@ -50,12 +50,17 @@ public class GeneratorManagerImpl implements GeneratorManager {
 
             moduleName = generatorAdapter.tableNameToModule(tableName, template, userConfig, moduleName);
             TableModel tableModel = generatorAdapter.formatTable(tableEntity, template, userConfig, moduleName, columnAttrMap);
-            params.putAll(MapUtils.objectToMap(tableModel));
+            params.put(template.getTemplateKey(), MapUtils.objectToMap(tableModel));
+        }
 
+        for (TemplateEntity template : templates) {
+            TableModel tableModel = generatorAdapter.formatTable(tableEntity, template, userConfig, moduleName, columnAttrMap);
             StringWriter stringWriter = generatorAdapter.renderPage(dataSourceKey, template.getTemplatePosition(), params);
-
             generatorAdapter.writePosition(dataSourceKey, template, userConfig, tableModel, stringWriter);
         }
+
+
+
 
 
         return null;

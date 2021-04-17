@@ -1,4 +1,4 @@
-package ${package}.${moduleName}.controller;
+package ${Controller.classPackage};
 
 import java.util.Arrays;
 import java.util.Map;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ${package}.${moduleName}.entity.${className}Entity;
-import ${package}.${moduleName}.service.${className}Service;
+import ${Entity.classPackageName};
+import ${Service.classPackageName};
 import ${mainPath}.utils.PageUtils;
 import ${mainPath}.utils.R;
 import ${mainPath}.validator.ValidatorUtils;
@@ -23,17 +23,17 @@ import ${mainPath}.validator.group.AddGroup;
 
 
 /**
- * ${comments}
+ * ${Controller.tableComment}
  *
  * @author ${author}
  * @email ${email}
  * @date ${datetime}
  */
 @RestController
-@RequestMapping("${classname}")
-public class ${className}Controller {
+@RequestMapping("${Controller.classname}")
+public class ${Controller.className}Controller {
     @Autowired
-    private ${className}Service ${classname}Service;
+    private ${Service.className}Service ${Service.classname}Service;
 
     /**
      * 	列表
@@ -41,9 +41,8 @@ public class ${className}Controller {
      * @return
      */
     @RequestMapping("/list")
-    @RequiresPermissions("${classname}:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = ${classname}Service.queryPage(params);
+        PageUtils page = ${Service.classname}Service.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -51,54 +50,50 @@ public class ${className}Controller {
 
      /**
      * 	信息
-     * @param ${pk.attrname}
+     * @param ${Entity.pk.attrname}
      * @return
      */
-    @RequestMapping("/info/{${pk.attrname}}")
-    @RequiresPermissions("${classname}:info")
-    public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
-        ${className}Entity ${classname} = ${classname}Service.getById(${pk.attrname});
+    @RequestMapping("/info/{${Entity.pk.attrname}}")
+    public R info(@PathVariable("${Entity.pk.attrname}") ${Entity.pk.attrType} ${Entity.pk.attrname}){
+        ${Entity.className}Entity ${Entity.classname} = ${Entity.classname}Service.getById(${Entity.pk.attrname});
 
-        return R.ok().put("${classname}", ${classname});
+        return R.ok().put("${Entity.classname}", ${Entity.classname});
     }
 
     /**
      * 	保存
-     * @param ${classname}
+     * @param ${Entity.classname}
      * @return
      */
     @RequestMapping("/save")
-    @RequiresPermissions("${classname}:save")
-    public R save(@RequestBody ${className}Entity ${classname}){
-    	ValidatorUtils.validateEntity(${classname}, AddGroup.class);
-        ${classname}Service.save(${classname});
+    public R save(@RequestBody ${Entity.className}Entity ${Entity.classname}){
+    	ValidatorUtils.validateEntity(${Entity.classname}, AddGroup.class);
+        ${Service.classname}Service.save(${Entity.classname});
 
         return R.ok();
     }
 
     /**
      * 	修改
-     * @param ${classname}
+     * @param ${Entity.classname}
      * @return
      */
     @RequestMapping("/update")
-    @RequiresPermissions("${classname}:update")
-    public R update(@RequestBody ${className}Entity ${classname}){
-        ValidatorUtils.validateEntity(${classname}, AddGroup.class);
-        ${classname}Service.updateById(${classname});//全部更新
+    public R update(@RequestBody ${Entity.className}Entity ${Entity.classname}){
+        ValidatorUtils.validateEntity(${Entity.classname}, AddGroup.class);
+        ${Service.classname}Service.updateById(${Entity.classname});//全部更新
         
         return R.ok();
     }
 
     /**
      * 	删除
-     * @param ${pk.attrname}s
+     * @param ${Entity.pk.attrname}s
      * @return
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("${classname}:delete")
-    public R delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s){
-        ${classname}Service.removeByIds(Arrays.asList(${pk.attrname}s));
+    public R delete(@RequestBody ${Entity.pk.attrType}[] ${Entity.pk.attrname}s){
+        ${Service.classname}Service.removeByIds(Arrays.asList(${Entity.pk.attrname}s));
 
         return R.ok();
     }

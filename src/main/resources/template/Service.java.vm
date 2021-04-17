@@ -1,19 +1,19 @@
-package ${package}.${moduleName}.service;
+package ${Service.classPackage};
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import ${mainPath}.utils.PageUtils;
-import ${package}.${moduleName}.entity.${className}Entity;
+import ${Entity.classPackageName};
 
 import java.util.Map;
 
 /**
- * ${comments}
+ * ${Service.tableComment}
  *
  * @author ${author}
  * @email ${email}
  * @date ${datetime}
  */
-public interface ${className}Service extends IService<${className}Entity> {
+public interface ${Service.className}Service extends IService<${Entity.className}Entity> {
 
 	/**
 	 * 查询列表信息

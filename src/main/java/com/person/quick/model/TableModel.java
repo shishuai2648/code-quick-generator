@@ -7,7 +7,9 @@ import java.util.List;
 
 /**
  * @author shishuai04
- */public class TableModel {
+ */
+@Data
+public class TableModel {
     /**
      * 表的名称
      */
@@ -27,7 +29,12 @@ import java.util.List;
     private String classname;
 
     /**
-     * 表的列名(不包含主键)
+     * 主键
+     */
+    private ColumnModel pk;
+
+    /**
+     * 表的列名
      */
     private List<ColumnModel> columns;
 
@@ -86,6 +93,14 @@ import java.util.List;
 
     public void setClassname(String classname) {
         this.classname = classname;
+    }
+
+    public ColumnModel getPk() {
+        return pk;
+    }
+
+    public void setPk(ColumnModel pk) {
+        this.pk = pk;
     }
 
     public List<ColumnModel> getColumns() {

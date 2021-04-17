@@ -1,4 +1,4 @@
-package ${package}.${moduleName}.service.impl;
+package ${ServiceImpl.classPackage};
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,21 +10,21 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ${mainPath}.utils.PageUtils;
 import ${mainPath}.utils.Query;
 
-import ${package}.${moduleName}.dao.${className}Dao;
-import ${package}.${moduleName}.entity.${className}Entity;
-import ${package}.${moduleName}.service.${className}Service;
+import ${Mapper.classPackageName};
+import ${Entity.classPackageName};
+import ${Service.classPackageName};
 
 /**
- * ${comments}
+ * ${Service.tableComment}
  *
  * @author ${author}
  * @email ${email}
  * @date ${datetime}
  */
-@Service("${classname}Service")
-public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${className}Entity> implements ${className}Service {
+@Service("${Service.classname}Service")
+public class ${Service.className}ServiceImpl extends ServiceImpl<${Service.className}Mapper, ${Service.className}Entity> implements ${Service.className}Service {
 	@Autowired
-    private ${className}Dao ${classname}Dao;
+    private ${Mapper.className}Mapper ${Mapper.classname}Mapper;
 	
 	/**
 	 * 查询列表信息
@@ -33,9 +33,9 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${clas
 	 */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-		IPage<${className}Entity> page = new Query<${className}Entity>(params).getPage();
-		List<${className}Entity> ${classname}List = ${classname}Dao.queryPage(page, params);
-        return new PageUtils(page.setRecords(${classname}List));
+		IPage<${Entity.className}Entity> page = new Query<${Entity.className}Entity>(params).getPage();
+		List<${Entity.className}Entity> ${Entity.classname}List = ${Entity.classname}Dao.queryPage(page, params);
+        return new PageUtils(page.setRecords(${Entity.classname}List));
     }
 
 }

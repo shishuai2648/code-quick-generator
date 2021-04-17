@@ -6,8 +6,12 @@ import com.person.quick.entity.*;
 import com.person.quick.enums.DbType;
 import com.person.quick.factory.BaseSqlQueryFactory;
 import com.person.quick.mapper.BaseSqlQueryMapper;
+import com.person.quick.utils.DateUtils;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author shishuai04
@@ -36,6 +40,15 @@ public class YmlGeneratorAdapterImpl extends BaseGeneratorAdapterImpl {
         tableEntity.setColumns(columns);
 
         return tableEntity;
+    }
+
+    @Override
+    public Map<String, Object> loadProperties(String dataSourceKey) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
+        param.put("author", commonConfig.getAuthor());
+        param.put("email", commonConfig.getEmail());
+        return param;
     }
 
     @Override

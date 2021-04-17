@@ -31,21 +31,19 @@ public class TableModuleUtil {
         tableModel.setTableComment(tableEntity.getTableComment());
         tableModel.setClassName(getClassName(tableName));
         tableModel.setClassname(getClassname(tableName));
-        tableModel.setAuthor(userConfigEntity.getAuthor());
-        tableModel.setEmail(userConfigEntity.getEmail());
         tableModel.setModuleName(moduleName);
 
         tableModel.setClassPackage(getClassPackage(tableEntity, templateEntity, moduleName));
         tableModel.setClassPackageName(tableModel.getClassPackage() + "." + tableModel.getClassName() + templateEntity.getTemplateFileName());
 
-        List<ColumnModel> columns = getColumns(tableEntity, templateEntity, userConfigEntity, columnAttrMap);
+        List<ColumnModel> columns = getColumns(tableEntity, tableModel, templateEntity, userConfigEntity, columnAttrMap);
 
         tableModel.setColumns(columns);
 
         return tableModel;
     }
 
-    public static List<ColumnModel> getColumns(TableEntity tableEntity, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, Map<String, String> columnAttrMap) throws Exception {
+    public static List<ColumnModel> getColumns(TableEntity tableEntity, TableModel tableModel, TemplateEntity templateEntity, UserConfigEntity userConfigEntity, Map<String, String> columnAttrMap) throws Exception {
         List<ColumnEntity> columns = tableEntity.getColumns();
 
         List<ColumnModel> columnModels = new ArrayList<>();
@@ -71,6 +69,7 @@ public class TableModuleUtil {
             //是否主键
             if ("PRI".equalsIgnoreCase(column.getColumnKey())) {
                 columnModel.setIsPK(Boolean.TRUE);
+                tableModel.setPk(columnModel);
             }
             columnModels.add(columnModel);
         }

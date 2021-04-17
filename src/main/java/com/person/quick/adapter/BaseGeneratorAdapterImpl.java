@@ -74,8 +74,8 @@ public abstract class BaseGeneratorAdapterImpl implements GeneratorAdapter {
 
         String filePath = projectPosition + File.separator + projectCodeRelativePosition + File.separator + classPackagePath + templateEntity.getTemplateSuffix();
 
-//        String s = writer.toString();
-//        System.out.println(s);
+        String s = writer.toString();
+        System.out.println(s);
         System.out.println(filePath);
     }
 
