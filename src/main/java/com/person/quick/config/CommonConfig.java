@@ -1,6 +1,7 @@
 package com.person.quick.config;
 
 import com.person.quick.entity.TemplateEntity;
+import com.person.quick.enums.GeneratorType;
 import lombok.Data;
 
 import java.util.List;
@@ -9,13 +10,13 @@ import java.util.List;
  * @author shishuai04
  */
 @Data
-public class CustomConfig {
+public class CommonConfig {
 
-    private String method;
+    private GeneratorType method;
 
     private String dataSourceKey;
 
-    private String datasourceType;
+    private String dataSourceType;
 
     private List<String> tableNames;
 

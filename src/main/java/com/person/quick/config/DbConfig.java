@@ -4,6 +4,8 @@ import com.baomidou.dynamic.datasource.processor.DsHeaderProcessor;
 import com.baomidou.dynamic.datasource.processor.DsProcessor;
 import com.person.quick.adapter.GeneratorAdapter;
 import com.person.quick.adapter.impl.MySqlGeneratorAdapterImpl;
+import com.person.quick.adapter.impl.YmlGeneratorAdapterImpl;
+import com.person.quick.enums.GeneratorType;
 import com.person.quick.processor.DataSourceProcessor;
 import com.person.quick.service.DataSourceService;
 import com.person.quick.service.TemplateService;
@@ -27,14 +29,17 @@ public class DbConfig {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "custom")
-    public CustomConfig customConfig(){
-        return new CustomConfig();
+    @ConfigurationProperties(prefix = "common")
+    public CommonConfig customConfig() {
+        return new CommonConfig();
     }
 
     @Bean
     @Primary
-    public GeneratorAdapter generatorAdapter(CustomConfig customConfig,DataSourceService dataSourceService, TemplateService templateService, UserConfigService userConfigService) {
+    public GeneratorAdapter generatorAdapter(CommonConfig commonConfig, DataSourceService dataSourceService, TemplateService templateService, UserConfigService userConfigService) {
+        if (GeneratorType.YML_CONFIG.equals(commonConfig.getMethod())) {
+            return new YmlGeneratorAdapterImpl(commonConfig);
+        }
         return new MySqlGeneratorAdapterImpl(dataSourceService, templateService, userConfigService);
     }
 
