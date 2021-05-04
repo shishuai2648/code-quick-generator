@@ -16,7 +16,7 @@ custom:
   tableNames:
     - base_process_time
     - base_transport_containers
-  projectPosition: /Users/ss/Desktop/aiib-medical
+  projectPosition: /Users/ss/Desktop/test
 
 common:
   method: YML_CONFIG
@@ -31,8 +31,8 @@ common:
       templateSuffix: .java
       existReplace: 0
       tableNameRex: ${moduleName}
-      modulePackage: com.baidu.aiig.medical.famg.data.famg.model
-      projectCodeRelativePosition: medical-famg-dao/src/main/java
+      modulePackage: com.test.entity
+      projectCodeRelativePosition: test/src/main/java
       moduleNameShow: 1
     - templateName: Dao.java.vm
       templatePosition: template/Dao.java.vm
@@ -41,8 +41,8 @@ common:
       templateSuffix: .java
       existReplace: 0
       tableNameRex: ${moduleName}
-      modulePackage: com.baidu.aiig.medical.famg.data.famg.mapper
-      projectCodeRelativePosition: medical-famg-dao/src/main/java
+      modulePackage: com.test.mapper
+      projectCodeRelativePosition: test/src/main/java
       moduleNameShow: 1
     - templateName: Dao.xml.vm
       templatePosition: template/Dao.xml.vm
@@ -52,7 +52,7 @@ common:
       existReplace: 0
       tableNameRex: ${moduleName}
       modulePackage: famg
-      projectCodeRelativePosition: medical-famg-dao/src/main/resources/sqlmap
+      projectCodeRelativePosition: test/src/main/resources/sqlmap
       moduleNameShow: 1
     - templateName: Controller.java.vm
       templatePosition: template/Controller.java.vm
@@ -61,7 +61,7 @@ common:
       templateSuffix: .java
       existReplace: 0
       tableNameRex: ${moduleName}
-      modulePackage: com.baidu.aiig.medical.famg.web.controller.${moduleName}
+      modulePackage: com.test.controller.${moduleName}
       projectCodeRelativePosition: famg/src/main/java
       moduleNameShow: 1
     - templateName: Service.java.vm
@@ -71,8 +71,8 @@ common:
       templateSuffix: .java
       existReplace: 0
       tableNameRex: ${moduleName}
-      modulePackage: com.baidu.aiig.medical.famg.data.famg.service.${moduleName}
-      projectCodeRelativePosition: medical-famg-dao/src/main/java
+      modulePackage: com.test.service.${moduleName}
+      projectCodeRelativePosition: test/src/main/java
       moduleNameShow: 1
     - templateName: ServiceImpl.java.vm
       templatePosition: template/ServiceImpl.java.vm
@@ -81,6 +81,6 @@ common:
       templateSuffix: .java
       existReplace: 0
       tableNameRex: ${moduleName}
-      modulePackage: com.baidu.aiig.medical.famg.data.famg.service.impl.${moduleName}
-      projectCodeRelativePosition:  medical-famg-dao/src/main/java
+      modulePackage: com.test.service.impl.${moduleName}
+      projectCodeRelativePosition:  test/src/main/java
       moduleNameShow: 1
