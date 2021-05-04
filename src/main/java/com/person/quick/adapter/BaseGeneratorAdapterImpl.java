@@ -77,7 +77,7 @@ public abstract class BaseGeneratorAdapterImpl implements GeneratorAdapter {
         File file = new File(filePath);
 
         if (!file.exists()) {
-            file.mkdir();
+            file.mkdirs();
         }
 
         filePath = filePath + File.separator +  tableModel.getClassName() + templateEntity.getTemplateSuffix();
